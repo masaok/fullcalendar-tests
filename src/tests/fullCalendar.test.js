@@ -10,9 +10,13 @@ describe('Calendar::addEvent()', () => {
     expect(calendar.getEvents().length).toBe(0)
 
     const dateStr = '2020-01-01'
-    var date = new Date(dateStr + 'T00:00:00') // will be in local time
+    const date = new Date(dateStr + 'T00:00:00') // will be in local time
 
-    const event = calendar.addEvent({ title: 'test event', start: date })
+    const event = calendar.addEvent({
+      title: 'test event',
+      start: date, // required, even though the docs say otherwise
+    })
+    expect(event).toBeTruthy()
     expect(calendar.getEvents().length).toBe(1)
   })
 })
